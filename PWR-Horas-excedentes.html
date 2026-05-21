@@ -431,8 +431,8 @@ function populateAll(){
   const cats=[...new Set(D.atividades.map(a=>a.categoria).filter(Boolean))].sort();
   const unis=[...new Set(D.rows.map(r=>r.unidade).filter(Boolean))].sort();
   const scrums=[...new Set(D.rows.map(r=>r.scrum).filter(Boolean))].sort();
-  // Plenos: consultores cujo cargo contém "Pleno"
-  const plenos=[...new Set(D.rows.filter(r=>r.cargo&&r.cargo.toLowerCase().includes('pleno')).map(r=>r.consultor))].sort();
+  // Plenos: todos os plenos alocados (independente de ter excedido)
+  const plenos=D.pleno_projetos?Object.keys(D.pleno_projetos).sort():[...new Set(D.rows.filter(r=>r.cargo&&r.cargo.toLowerCase().includes('pleno')).map(r=>r.consultor))].sort();
   fillSel(document.getElementById('fl-g'), gs);
   fillSel(document.getElementById('fl-p'), ps);
   fillSel(document.getElementById('fl-uni'), unis);
